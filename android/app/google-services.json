@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "153227130290",
+    "project_id": "instatgram-teddyo",
+    "storage_bucket": "instatgram-teddyo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153227130290:android:f7aaece8e6d91964b2e0ab",
+        "android_client_info": {
+          "package_name": "com.example.instatgram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153227130290-bsn4oosv9u2bdaeecf6vldfj60kvie8s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXS_MbqnfY_epEvNZWFEcM1YnXHQHrX0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153227130290-bsn4oosv9u2bdaeecf6vldfj60kvie8s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
