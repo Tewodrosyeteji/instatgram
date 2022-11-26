@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "153227130290-l2u2648cbldl1kvagu27t967j1q5rcub.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.instatgram",
+            "certificate_hash": "8fb46813e7f00de33f34bd87c5979f6fbd999e2a"
+          }
+        },
+        {
           "client_id": "153227130290-bsn4oosv9u2bdaeecf6vldfj60kvie8s.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "153227130290-bsn4oosv9u2bdaeecf6vldfj60kvie8s.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "153227130290-0b50r58hgqi5md0iqmuu9qv57llg67nd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.instatgram"
+              }
             }
           ]
         }
