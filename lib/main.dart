@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:instatgram/state/auth/providers/auth_state_provider.dart';
+import 'package:instatgram/state/auth/providers/is_logged_in_provider.dart';
 import 'package:instatgram/state/backend/authenticator.dart';
 import 'firebase_options.dart';
 
@@ -8,8 +11,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(
-    MaterialApp(
+  runApp(ProviderScope(
+    child: MaterialApp(
       title: 'Flutter Demo',
       darkTheme: ThemeData(
         brightness: Brightness.dark,
@@ -21,9 +24,16 @@ void main() async {
         primarySwatch: Colors.blue,
       ),
       themeMode: ThemeMode.dark,
-      home: const HomePage(),
+      home: Consumer(builder: ((context, ref, child) {
+        final isloggedin = ref.watch(isLoogedInProvider);
+        if (isloggedin) {
+          return const HomePage();
+        } else {
+          return const LoginView();
+        }
+      })),
     ),
-  );
+  ));
 }
 
 class HomePage extends StatelessWidget {
@@ -35,20 +45,39 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Center(child: Text('Home page')),
       ),
+      body: Consumer(
+        builder: ((context, ref, child) {
+          return TextButton(
+            onPressed: () async {
+              await ref.read(authStateProvider.notifier).logOut();
+            },
+            child: const Text('Log Out'),
+          );
+        }),
+      ),
+    );
+  }
+}
+
+class LoginView extends ConsumerWidget {
+  const LoginView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text('Login View')),
+      ),
       body: Column(
         children: [
           TextButton(
-            onPressed: (() async {
-              final result = await Authenticator().loginWithGoogle();
-              print(result);
-            }),
+            onPressed: ref.read(authStateProvider.notifier).logInWithGoogle,
             child: const Text('Sign In With Google'),
           ),
           TextButton(
-            onPressed: (() async {
-              final result = await Authenticator().loginWithFacebook();
-              print(result);
-            }),
+            onPressed: ref.read(authStateProvider.notifier).logInWithFacebook,
             child: const Text('Sign In With Facebook'),
           )
         ],

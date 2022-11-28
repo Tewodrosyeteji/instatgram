@@ -7,6 +7,7 @@ import '../auth/constants/constants.dart';
 import '../models/auth_result.dart';
 
 class Authenticator {
+  const Authenticator();
   UserId? get userId => FirebaseAuth.instance.currentUser?.uid;
   bool get isAlearedyLogged => userId != null;
   String? get displayName => FirebaseAuth.instance.currentUser?.displayName;
