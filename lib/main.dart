@@ -4,6 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instatgram/state/auth/providers/auth_state_provider.dart';
 import 'package:instatgram/state/auth/providers/is_logged_in_provider.dart';
 import 'package:instatgram/state/backend/authenticator.dart';
+import 'package:instatgram/state/providers/is_loading_provider.dart';
+import 'package:instatgram/views/components/loading/loading_screen.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -25,6 +27,19 @@ void main() async {
       ),
       themeMode: ThemeMode.dark,
       home: Consumer(builder: ((context, ref, child) {
+        ref.listen<bool>(
+          isLoadingProvider,
+          (_, isLoading) {
+            if (isLoading) {
+              LoadingScreen.instance().show(
+                context: context,
+              );
+            } else {
+              LoadingScreen.instance().hide();
+            }
+          },
+        );
+
         final isloggedin = ref.watch(isLoogedInProvider);
         if (isloggedin) {
           return const HomePage();
@@ -46,14 +61,14 @@ class HomePage extends StatelessWidget {
         title: const Center(child: Text('Home page')),
       ),
       body: Consumer(
-        builder: ((context, ref, child) {
+        builder: (context, ref, child) {
           return TextButton(
             onPressed: () async {
               await ref.read(authStateProvider.notifier).logOut();
             },
             child: const Text('Log Out'),
           );
-        }),
+        },
       ),
     );
   }
