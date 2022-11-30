@@ -5,7 +5,12 @@ import 'package:instatgram/state/auth/providers/auth_state_provider.dart';
 import 'package:instatgram/state/auth/providers/is_logged_in_provider.dart';
 import 'package:instatgram/state/backend/authenticator.dart';
 import 'package:instatgram/state/providers/is_loading_provider.dart';
+import 'package:instatgram/views/components/animations/data_not_found_animation_view.dart';
+import 'package:instatgram/views/components/animations/empty_contents_amination_view.dart';
+import 'package:instatgram/views/components/animations/loading_animation_view.dart';
+import 'package:instatgram/views/components/animations/small_error_animation_view.dart';
 import 'package:instatgram/views/components/loading/loading_screen.dart';
+import 'package:instatgram/views/login/login_view.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -69,33 +74,6 @@ class HomePage extends StatelessWidget {
             child: const Text('Log Out'),
           );
         },
-      ),
-    );
-  }
-}
-
-class LoginView extends ConsumerWidget {
-  const LoginView({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(child: Text('Login View')),
-      ),
-      body: Column(
-        children: [
-          TextButton(
-            onPressed: ref.read(authStateProvider.notifier).logInWithGoogle,
-            child: const Text('Sign In With Google'),
-          ),
-          TextButton(
-            onPressed: ref.read(authStateProvider.notifier).logInWithFacebook,
-            child: const Text('Sign In With Facebook'),
-          )
-        ],
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart' show VoidCallback, immutable;
 import 'package:flutter/material.dart' show TextStyle, Colors, TextDecoration;
 
+import 'link_text.dart';
+
 @immutable
 class BaseText {
   final String text;
@@ -28,8 +30,8 @@ class BaseText {
       decoration: TextDecoration.underline,
     ),
   }) =>
-      BaseText(
+      LinkText(
         text: text,
-        style: style,
+        onTapped: onTapped,
       );
 }
