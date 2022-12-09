@@ -5,8 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instatgram/state/auth/providers/user_id_provider.dart';
 import 'package:instatgram/state/constants/firebase_collection_name.dart';
 import 'package:instatgram/state/constants/firebase_fileld_name.dart';
-import 'package:instatgram/state/posts/models/post.dart';
-import 'package:instatgram/state/posts/models/post_keys.dart';
+import 'package:instatgram/posts/models/post.dart';
+import 'package:instatgram/posts/models/post_keys.dart';
 
 final UserPostProvider = StreamProvider<Iterable<Post>>(((ref) {
   final userId = ref.watch(userIdProvider);
