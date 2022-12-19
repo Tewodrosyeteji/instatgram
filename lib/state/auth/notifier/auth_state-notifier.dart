@@ -1,7 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:instatgram/posts/typedef/user_id.dart';
+import 'package:instatgram/state/posts/typedef/user_id.dart';
 import 'package:instatgram/state/models/auth_result.dart';
-import 'package:instatgram/state/user_info/models/backend/user_info_storage.dart';
+import 'package:instatgram/state/user_info/backend/user_info_storage.dart';
 
 import '../../backend/authenticator.dart';
 import '../../models/auth_state.dart';

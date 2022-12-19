@@ -1,7 +1,7 @@
 import 'dart:collection' show MapView;
 import 'package:flutter/foundation.dart' show immutable;
 import 'package:instatgram/state/constants/firebase_fileld_name.dart';
-import '../../../posts/typedef/user_id.dart';
+import '../../posts/typedef/user_id.dart';
 
 @immutable
 class UserInfoPayload extends MapView<String, String> {

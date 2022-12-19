@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart' show immutable;
-import 'package:instatgram/posts/models/post_keys.dart';
+import 'package:instatgram/state/posts/models/post_keys.dart';
 import 'package:instatgram/state/image_upload/models/file_type.dart';
 import 'package:instatgram/state/post_settings/models/post_setting.dart';
 
@@ -11,7 +11,7 @@ class Post {
   final DateTime createdAt;
   final String message;
   final FileType fileType;
-  final String fileName;
+  final String? fileName;
   final String fileUrl;
   final String originalFileStorageId;
   final String thumbnailUrl;
@@ -23,7 +23,6 @@ class Post {
       : userId = json[PostKeys.userId],
         createdAt = (json[PostKeys.createdAt] as Timestamp).toDate(),
         message = json[PostKeys.message],
-        fileName = json[PostKeys.fileName],
         fileUrl = json[PostKeys.fileUrl],
         originalFileStorageId = json[PostKeys.originalFileStorageId],
         thumbnailUrl = json[PostKeys.thumbnailUrl],
@@ -33,6 +32,7 @@ class Post {
           (fileType) => fileType == json[PostKeys.fileType],
           orElse: () => FileType.image,
         ),
+        fileName = json[PostKeys.fileName],
         postSettings = {
           for (final entry in json[PostKeys.postSetting].entries)
             PostSetting.values.firstWhere(

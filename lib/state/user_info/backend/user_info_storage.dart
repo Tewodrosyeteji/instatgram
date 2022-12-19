@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart' show immutable;
 import 'package:instatgram/state/constants/firebase_collection_name.dart';
 import 'package:instatgram/state/constants/firebase_fileld_name.dart';
 import 'package:instatgram/state/user_info/models/user_info_payload.dart';
-import '../../../../posts/typedef/user_id.dart';
+import '../../posts/typedef/user_id.dart';
 
 @immutable
 class UserInfoStorage {

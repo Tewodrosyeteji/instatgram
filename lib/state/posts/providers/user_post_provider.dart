@@ -5,10 +5,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instatgram/state/auth/providers/user_id_provider.dart';
 import 'package:instatgram/state/constants/firebase_collection_name.dart';
 import 'package:instatgram/state/constants/firebase_fileld_name.dart';
-import 'package:instatgram/posts/models/post.dart';
-import 'package:instatgram/posts/models/post_keys.dart';
+import 'package:instatgram/state/posts/models/post.dart';
+import 'package:instatgram/state/posts/models/post_keys.dart';
 
-final UserPostProvider = StreamProvider<Iterable<Post>>(((ref) {
+final userPostProvider = StreamProvider.autoDispose<Iterable<Post>>(((ref) {
   final userId = ref.watch(userIdProvider);
   final controller = StreamController<Iterable<Post>>();
 
@@ -26,13 +26,17 @@ final UserPostProvider = StreamProvider<Iterable<Post>>(((ref) {
       .snapshots()
       .listen((snapshot) {
     final documents = snapshot.docs;
-    final posts = documents
-        .where((doc) => !doc.metadata.hasPendingWrites)
-        .map((doc) => Post(
-              postId: doc.id,
-              json: doc.data(),
-            ));
+    final posts = documents.where((doc) => !doc.metadata.hasPendingWrites).map(
+          (doc) => Post(
+            postId: doc.id,
+            json: doc.data(),
+          ),
+        );
+    controller.sink.add(posts);
   });
-
+  ref.onDispose(() {
+    sub.cancel();
+    controller.close();
+  });
   return controller.stream;
 }));
