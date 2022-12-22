@@ -8,6 +8,8 @@ import 'package:instatgram/state/post_settings/providers/post_settings_provider.
 import 'package:instatgram/views/components/dialogs/alert_dialog_model.dart';
 import 'package:instatgram/views/components/dialogs/logout_dialog_model.dart';
 import 'package:instatgram/views/create_new/create_new_post_view.dart';
+import 'package:instatgram/views/tabs/home/home_view.dart';
+import 'package:instatgram/views/tabs/search/search_view.dart';
 import 'package:instatgram/views/tabs/users_post/users_post_views.dart';
 
 import '../constants/strings.dart';
@@ -100,8 +102,8 @@ class _MainViewState extends ConsumerState<MainView> {
         ),
         body: const TabBarView(children: [
           UsersPostViews(),
-          UsersPostViews(),
-          UsersPostViews(),
+          SearchView(),
+          HomeView(),
         ]),
       ),
     );
